@@ -1,3 +1,5 @@
+@use './base/font' as f;
+
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +14,7 @@ html {
   min-height: 100dvh;
 
   color-scheme: light dark;
+  font-family: f.$font-primary;
 }
 
 body,
@@ -25,5 +28,5 @@ main {
   display: flex;
   flex-direction: column;
 
-  padding: 4rem 16%;
+  padding: 4rem 1%;
 }
