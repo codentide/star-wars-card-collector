@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router'
 import { Header } from './components'
 import { AlbumPage } from './pages/Album.page'
+import { UnboxPage } from './pages/Unbox.page'
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <main>
         <Routes>
           <Route index element={<AlbumPage />} />
-          <Route path="/unbox" element={<p>Unbox</p>} />
+          <Route path="/unbox" element={<UnboxPage />} />
           <Route path="/*" element={<p>404</p>} />
         </Routes>
       </main>

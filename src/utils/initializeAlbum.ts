@@ -1,6 +1,6 @@
 import type { Album, AlbumCategory } from '../types/album.type'
 
-const ALBUM_SLOTS = { film: 6, character: 82, spaceship: 36 }
+export const ALBUM_SLOTS = { film: 6, character: 82, spaceship: 36 } as const
 
 const createAlbumCategory = (count: number): AlbumCategory => {
   const newCategory: AlbumCategory = {}

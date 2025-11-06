@@ -1,5 +1,6 @@
 export type Rarity = 'special' | 'regular'
 export type Category = 'character' | 'film' | 'spaceship'
+export type Configuration = Category[]
 
 export interface Sticker {
   id: number
@@ -16,3 +17,10 @@ export interface Album {
   character: AlbumCategory
   spaceship: AlbumCategory
 }
+
+export type SecretSticker = {
+  id: Sticker['id']
+  category: Category
+}
+
+export type SecretPack = SecretSticker[]
