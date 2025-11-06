@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+//
+
+html {
+  width: 100%;
+  min-height: 100dvh;
+
+  color-scheme: light dark;
+}
+
+body,
+#root {
+  min-height: 100dvh;
+}
+
+// App
+
+main {
+  display: flex;
+  flex-direction: column;
+
+  padding: 4rem 16%;
+}
