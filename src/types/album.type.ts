@@ -8,7 +8,8 @@ export interface Sticker {
   category: Category
 }
 
-export type AlbumCategory = Record<number, Sticker | null>
+export type AlbumSlot = Sticker | null
+export type AlbumCategory = Record<number, AlbumSlot>
 
 export interface Album {
   film: AlbumCategory

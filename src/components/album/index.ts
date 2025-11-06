@@ -1,1 +1,1 @@
-export * from './AlbumGrid/AlbumGrid'
+export * from './Album/Album'

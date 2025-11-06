@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useAlbum, useAlbumActions } from '../stores/album.store'
-import { AlbumGrid } from '../components'
+import { Album } from '../components'
 
 export const AlbumPage = () => {
   const album = useAlbum()
@@ -12,9 +12,7 @@ export const AlbumPage = () => {
 
   return (
     <section>
-      <h2>Album</h2>
-      <hr />
-      <AlbumGrid data={album} />
+      <Album data={album} />
     </section>
   )
 }
