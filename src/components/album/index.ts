@@ -1,1 +1,1 @@
-export * from './Album/Album'
+export * from './AlbumManager/Album'

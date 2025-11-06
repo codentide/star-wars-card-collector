@@ -14,14 +14,13 @@ export const AlbumSlot = ({ id, stickerData }: Props) => {
       </div>
     )
 
+  const { title, category, rarity } = stickerData
   return (
     <div className="album-slot">
-      <ul>
-        <li>{stickerData.id}</li>
-        <li>{stickerData.title}</li>
-        <li>{stickerData.category}</li>
-        <li>{stickerData.rarity}</li>
-      </ul>
+      <h4 className="title">{title}</h4>
+      <span className="id">{id}</span>
+      <span>{category}</span>
+      <span>{rarity}</span>
     </div>
   )
 }
