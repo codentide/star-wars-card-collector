@@ -8,7 +8,7 @@ export const AlbumPage = () => {
 
   useEffect(() => {
     if (Object.keys(album.film).length === 0) initializeAlbum()
-  }, [album, initializeAlbum, addStickerToAlbum])
+  }, [album, initializeAlbum])
 
   return (
     <section>

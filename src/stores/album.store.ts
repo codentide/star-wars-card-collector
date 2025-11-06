@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import type { Album, Sticker } from '../types/album.type'
-import { initializeAlbum } from '../helpers'
+import { initializeAlbum } from '../utils'
 
 interface Actions {
   initializeAlbum: () => void

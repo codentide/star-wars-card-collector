@@ -1,5 +1,5 @@
-type Rarity = 'special' | 'regular'
-type Category = 'character' | 'film' | 'spaceship'
+export type Rarity = 'special' | 'regular'
+export type Category = 'character' | 'film' | 'spaceship'
 
 export interface Sticker {
   id: number
