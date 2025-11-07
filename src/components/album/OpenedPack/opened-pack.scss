@@ -9,8 +9,7 @@
   margin: 0 auto;
 
   width: 240px;
-  height: 440px;
-  // background-color: red;
+  height: 450px;
 
   .sticker-card {
     position: absolute;
@@ -21,6 +20,37 @@
 
     transition: transform 0.3s ease-out;
     transform: translateX(-50%);
+  }
+
+  &__button {
+    $hue: 150;
+    display: grid;
+    place-items: center;
+
+    border: 1px solid;
+    outline: 1px solid;
+    outline-offset: 2px;
+    border-radius: 0.2rem;
+    padding: 0.64rem;
+
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+
+    border-color: hsl($hue, 100%, 70%);
+    outline-color: hsl($hue, 60%, 35%);
+    background: linear-gradient(to bottom, hsl($hue, 16%, 8%) 0%, hsl($hue, 40%, 20%) 200%);
+
+    cursor: pointer;
+
+    &.--discard {
+      $hue: 350;
+
+      border-color: hsl($hue, 100%, 70%);
+      outline-color: hsl($hue, 60%, 35%);
+      background: linear-gradient(to bottom, hsl($hue, 16%, 8%) 0%, hsl($hue, 40%, 20%) 200%);
+    }
   }
 }
 

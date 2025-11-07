@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const OpenedPack = ({ pack }: Props) => {
-  const { addStickerToAlbum, clearOpenedPack } = useAlbumActions()
+  const { addStickerToAlbum, clearOpenedPack, isStickerInAlbum } = useAlbumActions()
   const [stickersToAdd, setStickersToAdd] = useState<StickerType[] | null>(pack)
 
   // [ ]: persistir el estado de pack abierto entre pestañas
@@ -18,7 +18,7 @@ export const OpenedPack = ({ pack }: Props) => {
     if (stickersToAdd === null && pack !== null) clearOpenedPack()
   }, [stickersToAdd, clearOpenedPack, pack])
 
-  const handleClick = () => {
+  const handleAccept = () => {
     if (stickersToAdd === null || stickersToAdd.length === 0) return
 
     setStickersToAdd((prev) => {
@@ -33,13 +33,23 @@ export const OpenedPack = ({ pack }: Props) => {
       return newArray
     })
   }
+
   if (stickersToAdd === null) return
+
   return (
     <div className="opened-pack">
       {stickersToAdd.map((sticker, index) => {
         return <Sticker key={index} data={sticker} />
       })}
-      <button onClick={handleClick}>Accept</button>
+      {isStickerInAlbum(stickersToAdd[stickersToAdd.length - 1]) ? (
+        <button className="opened-pack__button --discard" onClick={handleAccept}>
+          Discard
+        </button>
+      ) : (
+        <button className="opened-pack__button" onClick={handleAccept}>
+          Add To Album
+        </button>
+      )}
     </div>
   )
 }

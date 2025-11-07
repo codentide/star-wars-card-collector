@@ -11,12 +11,13 @@ interface Actions {
   clearOpenedPack: () => void
   startPackLockTimer: (minutes: number) => void
   canOpenPack: () => boolean
+  isStickerInAlbum: (sticker: Sticker) => boolean
 }
 
 interface State {
   album: Album
   availablePacks: SecretPack[]
-  openedPack: Sticker[] | null
+  openedPack: Sticker[]
   packLockTimer: number | null
   isLoading: boolean
   actions: Actions
@@ -25,7 +26,7 @@ interface State {
 export const useAlbumStore = create<State>((set, get) => ({
   album: { character: {}, film: {}, spaceship: {} },
   availablePacks: [],
-  openedPack: null,
+  openedPack: [],
   packLockTimer: null,
   isLoading: false,
   actions: {
@@ -70,7 +71,7 @@ export const useAlbumStore = create<State>((set, get) => ({
       get().actions.startPackLockTimer(0.25)
       set({ openedPack, availablePacks: [], isLoading: false })
     },
-    clearOpenedPack: () => set({ openedPack: null }),
+    clearOpenedPack: () => set({ openedPack: [] }),
     startPackLockTimer: (minutes) => {
       const seconds = minutes * 60
       const ms = seconds * 1000
@@ -92,14 +93,20 @@ export const useAlbumStore = create<State>((set, get) => ({
       // No es posible abrir un pack
       return false
     },
+    isStickerInAlbum: (sticker) => {
+      const currentAlbum = get().album
+      const stickerId = sticker.id
+      const category = sticker.category
+
+      // Si no encuentra nada retorna false
+      return currentAlbum[category] && currentAlbum[category][stickerId] !== undefined
+    },
   },
 }))
 
 export const useAlbum = () => useAlbumStore((state) => state.album)
-export const useAvailablePacks = () =>
-  useAlbumStore((state) => state.availablePacks)
+export const useAvailablePacks = () => useAlbumStore((state) => state.availablePacks)
 export const useOpenedPack = () => useAlbumStore((state) => state.openedPack)
 export const useIsLoading = () => useAlbumStore((state) => state.isLoading)
 export const useAlbumActions = () => useAlbumStore((state) => state.actions)
-export const usePackLockTimer = () =>
-  useAlbumStore((state) => state.packLockTimer)
+export const usePackLockTimer = () => useAlbumStore((state) => state.packLockTimer)
