@@ -4,10 +4,10 @@ import { useAlbumActions } from '../../../stores/album.store'
 
 interface Props {
   index: number
-  data: SecretPackType
+  pack: SecretPackType
 }
 
-export const SecretPack = ({ index, data }: Props) => {
+export const SecretPack = ({ index, pack }: Props) => {
   const { openSecretPack } = useAlbumActions()
 
   // 1. Clickear
@@ -21,7 +21,7 @@ export const SecretPack = ({ index, data }: Props) => {
 
   return (
     <article className="secret-pack">
-      {data.map((sticker, index) => (
+      {pack.map((sticker, index) => (
         <div key={index}>
           <p>
             {sticker.id} - {sticker.category}

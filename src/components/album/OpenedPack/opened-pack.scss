@@ -1,0 +1,41 @@
+@use '../../../scss/base/colors' as c;
+
+.opened-pack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  margin: 0 auto;
+
+  width: 240px;
+  height: 440px;
+  // background-color: red;
+
+  .sticker-card {
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+
+    width: 100%;
+
+    transition: transform 0.3s ease-out;
+    transform: translateX(-50%);
+  }
+}
+
+.opened-pack .sticker-card:nth-child(1) {
+  transform: translateY(-4rem) translateX(-50%);
+}
+.opened-pack .sticker-card:nth-child(2) {
+  transform: translateY(-3rem) translateX(-50%);
+}
+.opened-pack .sticker-card:nth-child(3) {
+  transform: translateY(-2rem) translateX(-50%);
+}
+.opened-pack .sticker-card:nth-child(4) {
+  transform: translateY(-1rem) translateX(-50%);
+}
+.opened-pack .sticker-card:nth-child(5) {
+  transform: translateY(-0rem) translateX(-50%);
+}

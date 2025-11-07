@@ -1,0 +1,31 @@
+@use '../../../scss/base/colors' as c;
+
+.sticker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  aspect-ratio: 1/1.4;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 0.4rem;
+
+  color: white;
+  border-color: c.$color-neutral-900;
+  background: linear-gradient(
+    45deg,
+    c.$color-neutral-1200 0%,
+    c.$color-neutral-1100 60%
+  );
+
+  &.special {
+    border-color: hsl(50, 12%, 40%);
+    background: linear-gradient(
+      45deg,
+      hsl(50, 12%, 16%) 0%,
+      hsl(50, 12%, 24%) 60%
+    );
+  }
+}

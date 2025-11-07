@@ -1,5 +1,5 @@
-import { create } from 'zustand'
 import type { Album, SecretPack, Sticker } from '../types/album.types'
+import { create } from 'zustand'
 import { generateSecretPack, initializeAlbum } from '../utils'
 import { getPackFromApi } from '../services/sticker.service'
 

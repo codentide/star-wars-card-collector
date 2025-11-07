@@ -55,7 +55,7 @@ const getStickerFromApi = async (
       rarity,
       category,
     }
-    console.log('Proceso exitoso:', newSticker)
+
     return newSticker
   } catch (error) {
     console.error('Error fetching or adapting sticker:', error)

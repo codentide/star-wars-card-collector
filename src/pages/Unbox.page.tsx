@@ -4,28 +4,30 @@ import {
   useAvailablePacks,
   useOpenedPack,
 } from '../stores/album.store'
-import { SecretPackList } from '../components/album/SecretPackList/SecretPackList'
-import { SecretPack } from '../components/album/SecretPack/SecretPack'
+import { PackSelection } from '../components/album/PackSelection/PackSelection'
+import { OpenedPack } from '../components/album/OpenedPack/OpenedPack'
 
 export const UnboxPage = () => {
+  // Funcion para generar nuevos paquetes secretos
   const { generateAvailablePacks } = useAlbumActions()
+  // Paquetes secretos
   const availablePacks = useAvailablePacks()
+  // Paquete seleccionado para abrir
   const openedPack = useOpenedPack()
 
+  // El efecto se encarga de que cada vez que no haya un sobre abierto genere opciones para abrir
   useEffect(() => {
-    generateAvailablePacks(4)
-  }, [generateAvailablePacks])
-
-  // useEffect(() => console.log(availablePacks), [availablePacks])
+    if (!openedPack) generateAvailablePacks(4)
+  }, [generateAvailablePacks, openedPack])
 
   return (
     <section className="unbox-page">
       <h2>Abrir Nuevo Sobre</h2>
       <br />
       {openedPack === null ? (
-        <SecretPackList data={availablePacks} />
+        <PackSelection packs={availablePacks} />
       ) : (
-        <SecretPack data={openedPack} />
+        <OpenedPack pack={openedPack} />
       )}
     </section>
   )

@@ -1,4 +1,5 @@
 import type { AlbumSlot as AlbumSlotType } from '../../../types/album.types'
+import { Sticker } from '../Sticker/Sticker'
 import './album-slot.scss'
 
 interface Props {
@@ -14,13 +15,5 @@ export const AlbumSlot = ({ id, stickerData }: Props) => {
       </div>
     )
 
-  const { title, category, rarity } = stickerData
-  return (
-    <div className="album-slot">
-      <h4 className="title">{title}</h4>
-      <span className="id">{id}</span>
-      <span>{category}</span>
-      <span>{rarity}</span>
-    </div>
-  )
+  return <Sticker data={stickerData} />
 }
