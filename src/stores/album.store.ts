@@ -9,20 +9,24 @@ interface Actions {
   generateAvailablePacks: (limit: number) => void
   openSecretPack: (index: number) => Promise<void>
   clearOpenedPack: () => void
+  startPackLockTimer: (minutes: number) => void
+  canOpenPack: () => boolean
 }
 
 interface State {
   album: Album
   availablePacks: SecretPack[]
   openedPack: Sticker[] | null
+  packLockTimer: number | null
   isLoading: boolean
   actions: Actions
 }
 
 export const useAlbumStore = create<State>((set, get) => ({
   album: { character: {}, film: {}, spaceship: {} },
-  openedPack: null,
   availablePacks: [],
+  openedPack: null,
+  packLockTimer: null,
   isLoading: false,
   actions: {
     initializeAlbum: () => set({ album: initializeAlbum() }),
@@ -44,6 +48,10 @@ export const useAlbumStore = create<State>((set, get) => ({
       set({ album: newAlbum })
     },
     generateAvailablePacks: (limit: number) => {
+      // Validar el timer
+      const isTimerEnded = get().actions.canOpenPack()
+      if (!isTimerEnded) return
+
       const newAvailablePacks: SecretPack[] = []
 
       for (let i = 1; i <= limit; i++) {
@@ -59,9 +67,31 @@ export const useAlbumStore = create<State>((set, get) => ({
       const selectedPack = get().availablePacks[index]
       // Hacer fetch con el pack seleccionado
       const openedPack = await getPackFromApi(selectedPack)
+      get().actions.startPackLockTimer(0.25)
       set({ openedPack, availablePacks: [], isLoading: false })
     },
     clearOpenedPack: () => set({ openedPack: null }),
+    startPackLockTimer: (minutes) => {
+      const seconds = minutes * 60
+      const ms = seconds * 1000
+      const expirationTime = Date.now() + ms
+      set({ packLockTimer: expirationTime })
+    },
+    canOpenPack: () => {
+      // Traer el tiempo de bloqueo
+      const timer = get().packLockTimer
+
+      // Si es nulo se puede abrir un sobre
+      if (timer === null) return true
+      // Si el tiempo ya transcurrió puede abrir el sobre y limpia el timer
+      if (Date.now() > timer) {
+        set({ packLockTimer: null })
+        return true
+      }
+
+      // No es posible abrir un pack
+      return false
+    },
   },
 }))
 
@@ -71,3 +101,5 @@ export const useAvailablePacks = () =>
 export const useOpenedPack = () => useAlbumStore((state) => state.openedPack)
 export const useIsLoading = () => useAlbumStore((state) => state.isLoading)
 export const useAlbumActions = () => useAlbumStore((state) => state.actions)
+export const usePackLockTimer = () =>
+  useAlbumStore((state) => state.packLockTimer)
