@@ -1,4 +1,4 @@
-import type { Album, SecretPack, Sticker } from '../types/album.types'
+import type { Album, SecretPack, Sticker, StickerRequest } from '../types/album.types'
 import { create } from 'zustand'
 import { generateSecretPack, initializeAlbum } from '../utils'
 import { getPackFromApi } from '../services/sticker.service'
@@ -11,7 +11,7 @@ interface Actions {
   clearOpenedPack: () => void
   startPackLockTimer: (minutes: number) => void
   canOpenPack: () => boolean
-  isStickerInAlbum: (sticker: Sticker) => boolean
+  isStickerInAlbum: (sticker: StickerRequest) => boolean
   processNextSticker: () => void
 }
 

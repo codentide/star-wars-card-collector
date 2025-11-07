@@ -1,13 +1,10 @@
-import type { CharacterSticker, FilmSticker, SecretPack, StickerRequest, SpaceShipSticker, Sticker } from '../types'
+import type { SecretPack, StickerRequest, Sticker, AlbumSticker } from '../types'
 import { ALBUM_SLOTS, BASE_API_URL, END_POINTS, MAX_ATTEMPTS } from '../constants'
 import { getRandomId } from '../utils'
 import { characterStickerAdapter, filmStickerAdapter, spaceShipStickerAdapter } from '../adapters/sticker.adapter'
 
 // Traer un sticker individual del api con su id y categoria
-export const getStickerFromApi = async (
-  sticker: StickerRequest,
-  attempts = 1
-): Promise<CharacterSticker | FilmSticker | SpaceShipSticker | null> => {
+export const getStickerFromApi = async (sticker: StickerRequest, attempts = 1): Promise<AlbumSticker | null> => {
   const category = sticker.category
   const id = sticker.id
   const url = `${BASE_API_URL}/${END_POINTS[category]}/${id}`

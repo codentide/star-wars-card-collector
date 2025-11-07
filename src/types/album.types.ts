@@ -13,9 +13,10 @@ export interface Sticker {
 export interface CharacterSticker extends Sticker {
   category: 'character'
   height: string
-  skin_color: string
+  skinColor: string
   gender: string
   homeworld: string
+  birth: string
 }
 
 export interface FilmSticker extends Sticker {
@@ -34,7 +35,7 @@ export interface SpaceShipSticker extends Sticker {
   crew: string
   passengers: string
 }
-
+export type AlbumSticker = CharacterSticker | FilmSticker | SpaceShipSticker
 export type AlbumSlot = Pick<Sticker, 'id' | 'category'> | null
 export type AlbumCategory = Record<number, AlbumSlot>
 

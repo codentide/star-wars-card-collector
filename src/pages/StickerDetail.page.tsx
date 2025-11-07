@@ -1,49 +1,139 @@
-import type { StickerCategory, Sticker } from '../types'
-import { useEffect, useState } from 'react'
+import type { CharacterSticker, SpaceShipSticker, FilmSticker, StickerCategory } from '../types'
 import { useNavigate, useParams } from 'react-router'
-import { getStickerFromApi } from '../services/sticker.service'
+import { LoadingSpinner } from '../components/common'
+import { useStickerDetail } from '../hooks/useStickerDetail'
 
 export const StickerDetailPage = () => {
-  const [detailData, setDetailData] = useState<Sticker | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
-
   const { id, category } = useParams()
+  const { detailData, isLoading, error } = useStickerDetail(Number(id), category as StickerCategory)
+
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const getStickerDetail = async () => {
-      if (!id || !category) return
-      const data = await getStickerFromApi({ id: Number(id), category: category as StickerCategory })
-      setDetailData(data)
-    }
-
-    getStickerDetail()
-  }, [id, category])
-
   // Función para salir del modal
   const handleClose = () => navigate('/', { replace: true })
 
+  // Retorno en caso de estar cargando
+  if (isLoading) {
+    return (
+      <div className="sticker-detail__overlay">
+        <article className="sticker-content" onClick={(e) => e.stopPropagation()}>
+          <LoadingSpinner />
+        </article>
+      </div>
+    )
+  }
+
+  // Retorno en caso en caso de haber un error
+  if (error) {
+    return (
+      <div className="sticker-detail__overlay" onClick={handleClose}>
+        <article className="sticker-content error">
+          <header className="sticker-content__header">
+            <h2>Oops</h2>
+            <button className="close-btn" onClick={handleClose}>
+              x
+            </button>
+          </header>
+          <p>No se encontró detalle detalle del cromo.</p>
+        </article>
+      </div>
+    )
+  }
+
+  // Guard para evitar algun error extra
+  if (!detailData) return
+
   return (
-    <section className="sticker-detail__overlay" onClick={handleClose}>
-      <div className="sticker-content" onClick={(e) => e.stopPropagation()}>
-        <div className="sticker-content__header">
+    <div className="sticker-detail__overlay" onClick={handleClose}>
+      <article className="sticker-content" onClick={(e) => e.stopPropagation()}>
+        <header className="sticker-content__header">
           <div className="heading-box">
             <div className="title-box">
-              <span>#{detailData?.id}</span>
-              <h3>{detailData?.title}</h3>
+              <span>#{detailData.id}</span>
+              <h3 className="title">{detailData.title}</h3>
             </div>
-            <p className="category">{detailData?.category}</p>
+            <p className="category">{detailData.category}</p>
           </div>
           <button className="close-btn" onClick={handleClose}>
             x
           </button>
-        </div>
-      </div>
-    </section>
+        </header>
+        {detailData.category === 'character' && <CharacterDetail detail={detailData} />}
+        {detailData.category === 'spaceship' && <SpaceShipDetail detail={detailData} />}
+        {detailData.category === 'film' && <FilmDetail detail={detailData} />}
+      </article>
+    </div>
   )
 }
 
-// Data para film: director, producer, estreno, episodio
-// Data para char: height, bith, skin_color, homeworld
-// Data para ship: cost_in_credits, manufacturer, model, crew
+// Componentes auxiliares
+const CharacterDetail = ({ detail }: { detail: CharacterSticker }) => {
+  const { height, skinColor, gender, homeworld, birth } = detail
+
+  return (
+    <div className="detail-box character">
+      <span className="detail-brick">
+        <strong>Altura</strong> {height}cm
+      </span>
+      <span className="detail-brick">
+        <strong>Color Piel</strong> {skinColor}
+      </span>
+      <span className="detail-brick">
+        <strong>Género</strong> {gender}
+      </span>
+      <span className="detail-brick">
+        <strong>Nacimiento</strong> {birth}
+      </span>
+      <span className="detail-brick two-span-width">
+        <strong>Planeta</strong>{' '}
+        <a target="_blank" href={homeworld}>
+          {homeworld}
+        </a>
+      </span>
+    </div>
+  )
+}
+
+const SpaceShipDetail = ({ detail }: { detail: SpaceShipSticker }) => {
+  const { model, manufacturer, crew, passengers } = detail
+
+  return (
+    <div className="detail-box spaceship">
+      <span className="detail-brick two-span-width">
+        <strong>Modelo</strong> {model}
+      </span>
+      <span className="detail-brick">
+        <strong>Tripulación</strong> {crew}
+      </span>
+      <span className="detail-brick two-span-width">
+        <strong>Fabricante</strong> {manufacturer}
+      </span>
+      <span className="detail-brick">
+        <strong>Pasajeros</strong> {passengers}
+      </span>
+    </div>
+  )
+}
+
+const FilmDetail = ({ detail }: { detail: FilmSticker }) => {
+  const { overview, director, producer, release, episode } = detail
+
+  return (
+    <div className="detail-box film">
+      <span className="detail-brick">
+        <strong>Director</strong> {director}
+      </span>
+      <span className="detail-brick">
+        <strong>Productor</strong> {producer}
+      </span>
+      <span className="detail-brick">
+        <strong>Fecha Estreno</strong> {release}
+      </span>
+      <span className="detail-brick">
+        <strong>Episodio</strong> {episode}
+      </span>
+      <span className="detail-brick full-width">
+        <strong>Sinopsis</strong> {overview}
+      </span>
+    </div>
+  )
+}

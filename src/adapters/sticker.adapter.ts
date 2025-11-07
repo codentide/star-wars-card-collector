@@ -11,7 +11,7 @@ import { determineRarity } from '../utils'
 
 export const characterStickerAdapter = (
   id: Sticker['id'],
-  { name, gender, height, homeworld, skin_color, url }: ApiPeople
+  { name, gender, height, homeworld, skin_color, url, birth_year }: ApiPeople
 ): CharacterSticker => {
   const rarity = determineRarity(id, 'character')
   return {
@@ -22,7 +22,8 @@ export const characterStickerAdapter = (
     gender,
     height,
     homeworld,
-    skin_color,
+    skinColor: skin_color,
+    birth: birth_year,
     url,
   }
 }
