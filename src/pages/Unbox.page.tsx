@@ -6,6 +6,7 @@ import {
 } from '../stores/album.store'
 import { PackSelection } from '../components/album/PackSelection/PackSelection'
 import { OpenedPack } from '../components/album/OpenedPack/OpenedPack'
+import { PackLockTimerDisplay } from '../components'
 
 export const UnboxPage = () => {
   // Funcion para generar nuevos paquetes secretos
@@ -23,6 +24,9 @@ export const UnboxPage = () => {
   return (
     <section className="unbox-page">
       <h2>Abrir Nuevo Sobre</h2>
+
+      <br />
+      <PackLockTimerDisplay />
       <br />
       {openedPack === null ? (
         <PackSelection packs={availablePacks} />
