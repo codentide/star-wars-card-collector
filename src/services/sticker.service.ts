@@ -1,9 +1,13 @@
-import type { ApiFilm, ApiPeople, ApiSpaceShip, SecretPack, SecretSticker, Sticker } from '../types'
+import type { CharacterSticker, FilmSticker, SecretPack, StickerRequest, SpaceShipSticker, Sticker } from '../types'
 import { ALBUM_SLOTS, BASE_API_URL, END_POINTS, MAX_ATTEMPTS } from '../constants'
-import { determineRarity, getRandomId } from '../utils'
+import { getRandomId } from '../utils'
+import { characterStickerAdapter, filmStickerAdapter, spaceShipStickerAdapter } from '../adapters/sticker.adapter'
 
 // Traer un sticker individual del api con su id y categoria
-export const getStickerFromApi = async (sticker: SecretSticker, attempts = 1): Promise<Sticker | null> => {
+export const getStickerFromApi = async (
+  sticker: StickerRequest,
+  attempts = 1
+): Promise<CharacterSticker | FilmSticker | SpaceShipSticker | null> => {
   const category = sticker.category
   const id = sticker.id
   const url = `${BASE_API_URL}/${END_POINTS[category]}/${id}`
@@ -28,22 +32,13 @@ export const getStickerFromApi = async (sticker: SecretSticker, attempts = 1): P
     }
 
     const data = await response.json()
-    const rarity = determineRarity(id, category)
-    let title = 'unknown'
-    if (category === 'film') {
-      title = (data as ApiFilm).title
-    } else {
-      title = (data as ApiPeople | ApiSpaceShip).name
-    }
 
-    const newSticker: Sticker = {
-      id,
-      title,
-      rarity,
-      category,
-    }
+    // Adaptar
+    if (category === 'character') return characterStickerAdapter(id, data)
+    if (category === 'film') return filmStickerAdapter(id, data)
+    if (category === 'spaceship') return spaceShipStickerAdapter(id, data)
 
-    return newSticker
+    return null
   } catch (error) {
     console.error('Error fetching or adapting sticker:', error)
     return null
@@ -54,5 +49,5 @@ export const getStickerFromApi = async (sticker: SecretSticker, attempts = 1): P
 export const getPackFromApi = async (pack: SecretPack): Promise<Sticker[]> => {
   const stickerPromises = pack.map(async (sticker) => getStickerFromApi(sticker))
   const result = await Promise.all(stickerPromises)
-  return result.filter((sticker): sticker is Sticker => sticker !== null)
+  return result.filter((sticker) => sticker !== null)
 }

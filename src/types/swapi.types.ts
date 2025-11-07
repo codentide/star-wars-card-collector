@@ -1,3 +1,5 @@
+export type ApiSticker = ApiPeople | ApiFilm | ApiSpaceShip
+
 export interface ApiPeople {
   name: string
   height: string

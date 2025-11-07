@@ -1,6 +1,6 @@
+import type { StickerCategory, Sticker } from '../types'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import type { Category, Sticker } from '../types'
 import { getStickerFromApi } from '../services/sticker.service'
 
 export const StickerDetailPage = () => {
@@ -14,7 +14,7 @@ export const StickerDetailPage = () => {
   useEffect(() => {
     const getStickerDetail = async () => {
       if (!id || !category) return
-      const data = await getStickerFromApi({ id: Number(id), category: category as Category })
+      const data = await getStickerFromApi({ id: Number(id), category: category as StickerCategory })
       setDetailData(data)
     }
 
