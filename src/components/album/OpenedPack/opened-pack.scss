@@ -23,7 +23,6 @@
   }
 
   &__button {
-    $hue: 150;
     display: grid;
     place-items: center;
 
@@ -37,16 +36,17 @@
     font-weight: 400;
     font-size: 1rem;
     text-transform: uppercase;
-
-    border-color: hsl($hue, 100%, 70%);
-    outline-color: hsl($hue, 60%, 35%);
-    background: linear-gradient(to bottom, hsl($hue, 16%, 8%) 0%, hsl($hue, 40%, 20%) 200%);
-
     cursor: pointer;
+
+    &.--add {
+      $hue: 150;
+      border-color: hsl($hue, 100%, 70%);
+      outline-color: hsl($hue, 60%, 35%);
+      background: linear-gradient(to bottom, hsl($hue, 16%, 8%) 0%, hsl($hue, 40%, 20%) 200%);
+    }
 
     &.--discard {
       $hue: 350;
-
       border-color: hsl($hue, 100%, 70%);
       outline-color: hsl($hue, 60%, 35%);
       background: linear-gradient(to bottom, hsl($hue, 16%, 8%) 0%, hsl($hue, 40%, 20%) 200%);

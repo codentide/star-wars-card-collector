@@ -12,6 +12,7 @@ interface Actions {
   startPackLockTimer: (minutes: number) => void
   canOpenPack: () => boolean
   isStickerInAlbum: (sticker: Sticker) => boolean
+  processNextSticker: () => void
 }
 
 interface State {
@@ -89,7 +90,6 @@ export const useAlbumStore = create<State>((set, get) => ({
         set({ packLockTimer: null })
         return true
       }
-
       // No es posible abrir un pack
       return false
     },
@@ -99,7 +99,21 @@ export const useAlbumStore = create<State>((set, get) => ({
       const category = sticker.category
 
       // Si no encuentra nada retorna false
-      return currentAlbum[category] && currentAlbum[category][stickerId] !== undefined
+      if (!currentAlbum[category]) return false
+      return currentAlbum[category][stickerId] !== null
+    },
+    processNextSticker: () => {
+      const currentOpenedPack = get().openedPack
+      const newOpenedPackArray = [...currentOpenedPack]
+      const currentSticker = newOpenedPackArray.pop()
+
+      // Si el array estaba vacio currentSticker deberia ser undefined
+      if (!currentSticker) return
+
+      const isRepeated = get().actions.isStickerInAlbum(currentSticker)
+      if (!isRepeated) get().actions.addStickerToAlbum(currentSticker)
+
+      set({ openedPack: newOpenedPackArray })
     },
   },
 }))

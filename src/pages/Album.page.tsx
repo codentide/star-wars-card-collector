@@ -18,7 +18,7 @@ export const AlbumPage = () => {
           addStickerToAlbum({
             id: 2,
             title: 'Kylo Ren',
-            category: 'film',
+            category: 'character',
             rarity: 'special',
           })
         }
