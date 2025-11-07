@@ -18,15 +18,20 @@ export const UnboxPage = () => {
 
   // El efecto se encarga de que cada vez que no haya un sobre abierto genere opciones para abrir
   useEffect(() => {
-    if (!openedPack) generateAvailablePacks(4)
-  }, [generateAvailablePacks, openedPack])
+    // Ver si solo ejecutar al primer render
+    if (availablePacks.length === 0 && openedPack === null) {
+      console.log('Generando desde unbox')
+      generateAvailablePacks(4)
+    }
+  }, [availablePacks.length, generateAvailablePacks, openedPack])
 
   return (
     <section className="unbox-page">
-      <h2>Abrir Nuevo Sobre</h2>
-
-      <br />
-      <PackLockTimerDisplay />
+      {availablePacks.length > 0 ? (
+        <h2>Abrir Nuevo Sobre</h2>
+      ) : (
+        <PackLockTimerDisplay />
+      )}
       <br />
       {openedPack === null ? (
         <PackSelection packs={availablePacks} />

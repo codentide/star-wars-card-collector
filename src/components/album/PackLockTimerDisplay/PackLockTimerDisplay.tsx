@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react'
-import { usePackLockTimer } from '../../../stores/album.store'
+import { useAlbumActions, usePackLockTimer } from '../../../stores/album.store'
 import { msToDisplay } from '../../../utils'
 
 export const PackLockTimerDisplay = () => {
   const [timeLeft, setTimeLeft] = useState<number>(0)
-  const expirationTime = usePackLockTimer()
+  const lockExpirationTime = usePackLockTimer()
+  const { generateAvailablePacks } = useAlbumActions()
 
   useEffect(() => {
-    if (expirationTime === null) return
+    if (lockExpirationTime === null) return
 
     const updateTimerDisplay = () => {
-      const remaining = expirationTime - Date.now()
+      const remaining = lockExpirationTime - Date.now()
 
       if (remaining <= 0) {
         setTimeLeft(0)
+        generateAvailablePacks(4)
         return
       }
       setTimeLeft(remaining)
@@ -23,7 +25,7 @@ export const PackLockTimerDisplay = () => {
     const interval = setInterval(updateTimerDisplay, 1000)
 
     return () => clearInterval(interval)
-  }, [expirationTime])
+  }, [lockExpirationTime, generateAvailablePacks])
 
   // Display para tiempo terminado
   if (timeLeft <= 0) return <p>TIEMPO TERMINADO</p>
