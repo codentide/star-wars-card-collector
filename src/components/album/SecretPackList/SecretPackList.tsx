@@ -1,5 +1,6 @@
 import type { SecretPack as SecretPackType } from '../../../types/album.types'
 import { SecretPack } from '../SecretPack/SecretPack'
+import './secret-pack-list.scss'
 
 interface Props {
   data: SecretPackType[]
@@ -7,9 +8,9 @@ interface Props {
 
 export const SecretPackList = ({ data }: Props) => {
   return (
-    <ul>
+    <ul className="secret-pack-list">
       {data.map((pack, index) => (
-        <SecretPack key={index} data={pack} />
+        <SecretPack key={index} index={index} data={pack} />
       ))}
     </ul>
   )

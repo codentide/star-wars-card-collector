@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import type { SecretPack as SecretPackType } from '../../../types/album.types'
+import { useAlbumActions } from '../../../stores/album.store'
 
 interface Props {
+  index: number
   data: SecretPackType
 }
 
-export const SecretPack = ({ data }: Props) => {
+export const SecretPack = ({ index, data }: Props) => {
+  const { openSecretPack } = useAlbumActions()
+
   // 1. Clickear
   // 2. Traer los elementos segun cada objeto del array (SecretSticker)
   // 3. Loading llamativo mientras trae la data
@@ -18,10 +22,13 @@ export const SecretPack = ({ data }: Props) => {
   return (
     <article className="secret-pack">
       {data.map((sticker, index) => (
-        <p key={index}>
-          {sticker.id} - {sticker.category}
-        </p>
+        <div key={index}>
+          <p>
+            {sticker.id} - {sticker.category}
+          </p>
+        </div>
       ))}
+      <button onClick={() => openSecretPack(index)}>open</button>
     </article>
   )
 }

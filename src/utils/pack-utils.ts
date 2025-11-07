@@ -27,7 +27,7 @@ const CONFIG_1: Configuration = [
   'character',
   'character',
   'spaceship',
-  'film',
+  'spaceship',
 ]
 const CONFIG_2: Configuration = [
   'character',
