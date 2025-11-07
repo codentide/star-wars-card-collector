@@ -1,16 +1,7 @@
-import type {
-  Configuration,
-  Rarity,
-  SecretPack,
-  SecretSticker,
-  Sticker,
-} from '../types/album.types'
-import { ALBUM_SLOTS } from './initializeAlbum'
+import { ALBUM_SLOTS } from '../constants'
+import type { Configuration, Rarity, SecretPack, SecretSticker, Sticker } from '../types/album.types'
 
-export const determineRarity = (
-  id: Sticker['id'],
-  category: Sticker['category']
-): Rarity => {
+export const determineRarity = (id: Sticker['id'], category: Sticker['category']): Rarity => {
   if (category === 'character' && id <= 20) return 'special'
   if (category === 'spaceship' && id <= 10) return 'special'
   if (category === 'film') return 'special'
@@ -22,20 +13,8 @@ export const getRandomId = (start: number, limit: number) => {
   return randomId
 }
 
-const CONFIG_1: Configuration = [
-  'character',
-  'character',
-  'character',
-  'spaceship',
-  'spaceship',
-]
-const CONFIG_2: Configuration = [
-  'character',
-  'character',
-  'spaceship',
-  'spaceship',
-  'film',
-]
+const CONFIG_1: Configuration = ['character', 'character', 'character', 'spaceship', 'spaceship']
+const CONFIG_2: Configuration = ['character', 'character', 'spaceship', 'spaceship', 'film']
 const ALL_CONFIG = [CONFIG_1, CONFIG_2]
 
 // [ ]: mejorar la funcion de aletoriedad

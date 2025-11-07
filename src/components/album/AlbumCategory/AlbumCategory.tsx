@@ -17,7 +17,7 @@ export const AlbumCategory = ({ title, data }: Props) => {
       <ul>
         {categorySlots.map(([id, data]) => (
           <li key={id}>
-            <AlbumSlot id={Number(id)} stickerData={data} />
+            <AlbumSlot slotId={Number(id)} stickerData={data} />
           </li>
         ))}
       </ul>

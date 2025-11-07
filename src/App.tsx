@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router'
 import { Header } from './components'
 import { AlbumPage } from './pages/Album.page'
 import { UnboxPage } from './pages/Unbox.page'
+import { StickerDetailPage } from './pages/StickerDetail.page'
 
 function App() {
   console.log(import.meta.env.VITE_BASE_URL)
@@ -11,7 +12,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<AlbumPage />}>
-            <Route path="/:category/:id" element={'HOLAAA'} />
+            <Route path="/:category/:id" element={<StickerDetailPage />} />
           </Route>
           <Route path="/unbox" element={<UnboxPage />} />
           <Route path="/*" element={<p>404</p>} />

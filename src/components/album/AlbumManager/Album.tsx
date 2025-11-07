@@ -11,8 +11,8 @@ export const Album = ({ data }: Props) => {
 
   return (
     <div className="album-container">
-      {albumCategories.map(([categoryTitle, data]) => (
-        <AlbumCategory key={categoryTitle} title={categoryTitle} data={data} />
+      {albumCategories.map(([category, data]) => (
+        <AlbumCategory key={category} title={category} data={data} />
       ))}
     </div>
   )
