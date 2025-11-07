@@ -25,7 +25,7 @@ interface State {
 }
 
 export const useAlbumStore = create<State>((set, get) => ({
-  album: { character: {}, film: {}, spaceship: {} },
+  album: initializeAlbum(),
   availablePacks: [],
   openedPack: [],
   packLockTimer: null,
