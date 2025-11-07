@@ -2,6 +2,7 @@ import type { CharacterSticker, SpaceShipSticker, FilmSticker, StickerCategory }
 import { useNavigate, useParams } from 'react-router'
 import { LoadingSpinner } from '../components/common'
 import { useStickerDetail } from '../hooks/useStickerDetail'
+import { IoIosClose } from 'react-icons/io'
 
 export const StickerDetailPage = () => {
   const { id, category } = useParams()
@@ -30,7 +31,7 @@ export const StickerDetailPage = () => {
           <header className="sticker-content__header">
             <h2>Oops</h2>
             <button className="close-btn" onClick={handleClose}>
-              x
+              <IoIosClose />
             </button>
           </header>
           <p>No se encontró detalle detalle del cromo.</p>
@@ -44,17 +45,19 @@ export const StickerDetailPage = () => {
 
   return (
     <div className="sticker-detail__overlay" onClick={handleClose}>
-      <article className="sticker-content" onClick={(e) => e.stopPropagation()}>
+      <article className={`sticker-content ${detailData.rarity}`} onClick={(e) => e.stopPropagation()}>
         <header className="sticker-content__header">
           <div className="heading-box">
             <div className="title-box">
-              <span>#{detailData.id}</span>
+              <span className="id">#{detailData.id}</span>
               <h3 className="title">{detailData.title}</h3>
             </div>
-            <p className="category">{detailData.category}</p>
+            <p className="category">
+              {detailData.rarity} {detailData.category}
+            </p>
           </div>
           <button className="close-btn" onClick={handleClose}>
-            x
+            <IoIosClose />
           </button>
         </header>
         {detailData.category === 'character' && <CharacterDetail detail={detailData} />}

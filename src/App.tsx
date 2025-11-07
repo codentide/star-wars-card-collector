@@ -1,11 +1,8 @@
 import { Route, Routes } from 'react-router'
 import { Header } from './components'
-import { AlbumPage } from './pages/Album.page'
-import { UnboxPage } from './pages/Unbox.page'
-import { StickerDetailPage } from './pages/StickerDetail.page'
+import { AlbumPage, StickerDetailPage, UnboxPage } from './pages'
 
 function App() {
-  console.log(import.meta.env.VITE_BASE_URL)
   return (
     <>
       <Header />

@@ -29,6 +29,9 @@ $color-neutral-1250: hsl($hue-primary, 12%, 12%);
 $color-neutral-1300: hsl($hue-primary, 12%, 8%);
 $color-neutral-1400: hsl($hue-primary, 12%, 0%);
 
+// Gradients
+$golden-gradient: linear-gradient(90deg, hsl(40, 50%, 40%) 0%, hsl(40, 100%, 70%) 100%);
+
 // State colors
 $color-success: hsl(120, 60%, 45%);
 $text-error: hsl(0, 72%, 64%);
