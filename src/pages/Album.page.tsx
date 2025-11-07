@@ -1,5 +1,6 @@
 import { useAlbum, useAlbumActions } from '../stores/album.store'
 import { Album } from '../components'
+import { Outlet } from 'react-router'
 
 export const AlbumPage = () => {
   const album = useAlbum()
@@ -20,6 +21,7 @@ export const AlbumPage = () => {
       >
         ADD CARD
       </button>
+      <Outlet />
       <Album data={album} />
     </section>
   )

@@ -10,7 +10,9 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route index element={<AlbumPage />} />
+          <Route path="/" element={<AlbumPage />}>
+            <Route path="/:category/:id" element={'HOLAAA'} />
+          </Route>
           <Route path="/unbox" element={<UnboxPage />} />
           <Route path="/*" element={<p>404</p>} />
         </Routes>
