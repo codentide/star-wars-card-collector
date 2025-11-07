@@ -1,4 +1,4 @@
-import type { Album as AlbumType } from '../../../types/album.type'
+import type { Album as AlbumType } from '../../../types/album.types'
 import { AlbumCategory } from '../AlbumCategory/AlbumCategory'
 import './album.scss'
 

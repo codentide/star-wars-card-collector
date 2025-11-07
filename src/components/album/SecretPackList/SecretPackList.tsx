@@ -1,4 +1,4 @@
-import type { SecretPack as SecretPackType } from '../../../types/album.type'
+import type { SecretPack as SecretPackType } from '../../../types/album.types'
 import { SecretPack } from '../SecretPack/SecretPack'
 
 interface Props {

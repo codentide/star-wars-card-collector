@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { Album, SecretPack, Sticker } from '../types/album.type'
+import type { Album, SecretPack, Sticker } from '../types/album.types'
 import { generateSecretPack, initializeAlbum } from '../utils'
 
 interface Actions {

@@ -4,7 +4,7 @@ import type {
   SecretPack,
   SecretSticker,
   Sticker,
-} from '../types/album.type'
+} from '../types/album.types'
 import { ALBUM_SLOTS } from './initializeAlbum'
 
 export const determineRarity = (

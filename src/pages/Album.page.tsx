@@ -17,7 +17,7 @@ export const AlbumPage = () => {
         onClick={() =>
           addStickerToAlbum({
             id: 2,
-            title: 'Marco Ren',
+            title: 'Kylo Ren',
             category: 'character',
             rarity: 'special',
           })

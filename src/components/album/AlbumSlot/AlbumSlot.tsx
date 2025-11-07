@@ -1,4 +1,4 @@
-import type { AlbumSlot as AlbumSlotType } from '../../../types/album.type'
+import type { AlbumSlot as AlbumSlotType } from '../../../types/album.types'
 import './album-slot.scss'
 
 interface Props {

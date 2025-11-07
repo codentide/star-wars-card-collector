@@ -1,4 +1,4 @@
-import type { Album, AlbumCategory } from '../types/album.type'
+import type { Album, AlbumCategory } from '../types/album.types'
 
 export const ALBUM_SLOTS = { film: 6, character: 82, spaceship: 36 } as const
 

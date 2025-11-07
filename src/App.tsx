@@ -4,6 +4,7 @@ import { AlbumPage } from './pages/Album.page'
 import { UnboxPage } from './pages/Unbox.page'
 
 function App() {
+  console.log(import.meta.env.VITE_BASE_URL)
   return (
     <>
       <Header />
