@@ -1,4 +1,5 @@
 @use '../../../scss/base/font' as f;
+@use '../../../scss/base/media-queries' as *;
 
 .pack-lock-timer {
   display: flex;
@@ -11,5 +12,10 @@
     font-weight: 600;
     font-family: f.$font-primary;
     font-variant-numeric: tabular-nums;
+
+    @include media-query($breakpoint-md) {
+      font-size: calc(8vw + 2rem);
+      align-items: start;
+    }
   }
 }

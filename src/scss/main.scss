@@ -1,5 +1,6 @@
 @use './base/font' as f;
 @use './base/colors' as c;
+@use './base/media-queries' as *;
 
 * {
   margin: 0;
@@ -40,4 +41,8 @@ main {
   flex-direction: column;
 
   padding: 4rem 20%;
+
+  @include media-query($breakpoint-md) {
+    padding-inline: 12%;
+  }
 }

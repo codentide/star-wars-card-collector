@@ -16,9 +16,6 @@ export const AlbumFilterTabs = ({ onSelectCategory }: Props) => {
     spaceship: Object.values(album.spaceship).filter((slot) => slot !== null).length,
     film: Object.values(album.film).filter((slot) => slot !== null).length,
   }
-  console.log(counts.character)
-
-  // const totalCount = counts.character + counts.spaceship + counts.film
 
   const tabs: { key: StickerCategory; count: number }[] = [
     { key: 'character', count: counts.character },

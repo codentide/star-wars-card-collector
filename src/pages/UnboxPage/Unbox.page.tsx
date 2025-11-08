@@ -26,12 +26,15 @@ export const UnboxPage = () => {
   return (
     <section className="unbox-page">
       <h2 className="unbox-page__title">Open Secret Pack</h2>
-      {/* {availablePacks.length === 0 && <PackLockTimerDisplay />} */}
 
       <br />
-      {openedPack.length === 0 && <PackLockTimerDisplay />}
-      {openedPack.length === 0 && <PackSelection packs={availablePacks} />}
       {isLoading ? <LoadingSpinner /> : openedPack.length > 0 ? <OpenedPack /> : ''}
+      {openedPack.length === 0 && (
+        <>
+          <PackLockTimerDisplay />
+          <PackSelection packs={availablePacks} />
+        </>
+      )}
     </section>
   )
 }

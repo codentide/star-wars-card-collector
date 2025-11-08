@@ -1,5 +1,6 @@
 @use '../../scss/base/font' as f;
 @use '../../scss/base/colors' as c;
+@use '../../scss/base/media-queries' as *;
 
 .sticker-detail {
   &__overlay {
@@ -11,6 +12,8 @@
 
     background-color: hsla(0, 0%, 0%, 0.6);
     backdrop-filter: blur(0.2rem);
+
+    padding: 1.2rem;
   }
 
   &__container {
@@ -28,22 +31,8 @@
     border-color: c.$color-neutral-1100;
     background-color: hsl(c.$hue-primary, 12%, 6%, 0.88);
 
-    &.special {
-      .heading-box {
-        .title-box .id {
-          color: hsl(40, 50%, 70%);
-          background-color: hsl(40, 80%, 40%, 0.2);
-          outline: 1px solid hsl(40, 50%, 70%, 0.3);
-        }
-        .category {
-          color: hsl(40, 8%, 48%);
-        }
-      }
-      .detail-box {
-        .detail-brick a {
-          color: hsl(50, 88%, 72%);
-        }
-      }
+    @include media-query($breakpoint-md) {
+      width: 100%;
     }
   }
 
@@ -57,15 +46,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-
-    .category {
-      font-size: 0.9rem;
-      font-weight: 300;
-      font-style: italic;
-      text-transform: capitalize;
-
-      color: c.$color-neutral-800;
-    }
   }
 
   &__title-box {
@@ -85,6 +65,24 @@
 
     color: c.$color-neutral-400;
     background-color: c.$color-neutral-1200;
+
+    &--special {
+      color: hsl(40, 50%, 70%);
+      background-color: hsl(40, 80%, 40%, 0.2);
+      outline: 1px solid hsl(40, 50%, 70%, 0.3);
+    }
+  }
+
+  &__category {
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: capitalize;
+
+    color: c.$color-neutral-800;
+    &--special {
+      color: hsl(40, 8%, 48%);
+    }
   }
 
   &__title {

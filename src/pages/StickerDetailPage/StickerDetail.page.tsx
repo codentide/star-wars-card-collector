@@ -46,14 +46,14 @@ export const StickerDetailPage = () => {
 
   return (
     <div className="sticker-detail__overlay" onClick={handleClose}>
-      <article className={`sticker-detail__container ${detailData.rarity}`} onClick={(e) => e.stopPropagation()}>
+      <article className={`sticker-detail__container`} onClick={(e) => e.stopPropagation()}>
         <header className="sticker-detail__header">
           <div className="sticker-detail__info-group">
             <div className="sticker-detail__title-box">
-              <span className="sticker-detail__id">#{detailData.id}</span>
+              <span className={`sticker-detail__id sticker-detail__id--${detailData.rarity}`}>#{detailData.id}</span>
               <h3 className="sticker-detail__title">{detailData.title}</h3>
             </div>
-            <p className="sticker-detail__category">
+            <p className={`sticker-detail__category  sticker-detail__category--${detailData.rarity}`}>
               {detailData.rarity} {detailData.category}
             </p>
           </div>

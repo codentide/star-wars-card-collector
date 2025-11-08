@@ -12,7 +12,6 @@ export const OpenedPack = () => {
   const isRepeated = isStickerInAlbum(currentSticker)
 
   const handleClick = () => {
-    console.log(currentSticker.title)
     processNextSticker()
   }
 
@@ -29,7 +28,7 @@ export const OpenedPack = () => {
         return <StickerCard key={index} data={sticker} />
       })}
 
-      {/* <span>{isRepeated ? 'Repeated' : 'New!'}</span> */}
+      <span className="opened-pack__repeat-badge">{isRepeated ? 'Repeated' : 'New!'}</span>
       <button className={`opened-pack__button ${isRepeated ? '--discard' : '--add'}`} onClick={handleClick}>
         {isRepeated ? 'Discard' : 'Add to album'}
       </button>

@@ -1,14 +1,23 @@
 @use '../../../scss/base/colors' as c;
+@use '../../../scss/base/media-queries' as *;
 
 .pack-selection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 1rem;
+
+  width: 100%;
+  margin: 0 auto;
+
+  @include media-query($breakpoint-xl) {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+  @include media-query($breakpoint-md) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
 
   .secret-pack {
-    aspect-ratio: 1/1.6;
-    width: 240px;
+    aspect-ratio: 1/1.2;
 
     border-radius: 0.4rem;
     border: 1px solid;

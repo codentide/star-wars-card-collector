@@ -10,7 +10,7 @@
   margin: 0 auto;
 
   width: 240px;
-  height: 260px;
+  height: 290px;
 
   .sticker-card {
     position: absolute;
@@ -24,6 +24,18 @@
     transition: transform 0.3s ease-out;
     transform: translateX(-50%);
     filter: drop-shadow(0px 0px 1rem hsl(0, 0%, 8%, 0.4));
+  }
+
+  &__repeat-badge {
+    position: absolute;
+    z-index: 1000;
+    left: 50%;
+    bottom: 3.2rem;
+    transform: translateX(-50%);
+
+    font-size: 1rem;
+    font-family: f.$font-primary;
+    text-transform: uppercase;
   }
 
   &__button {

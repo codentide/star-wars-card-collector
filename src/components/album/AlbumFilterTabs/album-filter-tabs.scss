@@ -1,4 +1,5 @@
 @use '../../../scss/base/colors' as c;
+@use '../../../scss/base/media-queries' as *;
 
 .filter-tabs {
   display: flex;
@@ -34,6 +35,10 @@
     color: c.$color-neutral-800;
 
     padding-left: 1rem;
+
+    @include media-query($breakpoint-md) {
+      padding: 0;
+    }
   }
 
   &__count {
@@ -44,6 +49,10 @@
     color: hsl(c.$hue-primary, 100%, 60%);
     background-color: hsl(c.$hue-primary, 100%, 32%, 0.2);
   }
+
+  @include media-query($breakpoint-md) {
+    flex-direction: column;
+  }
 }
 
 .filter-tabs__item--active {
@@ -51,9 +60,5 @@
 
   .filter-tabs__name {
     color: c.$color-neutral-400;
-  }
-
-  .filter-tabs__count {
-    // background-color: hsl(c.$hue-primary, 100%, 8%, 0.4);
   }
 }
