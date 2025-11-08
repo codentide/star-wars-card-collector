@@ -1,6 +1,7 @@
 import type { AlbumSlot as AlbumSlotType, Sticker as StickerType } from '../../../types'
 import { Link } from 'react-router'
 import './album-slot.scss'
+import { StickerCard } from '../StickerCard/StickerCard'
 
 interface Props {
   slotId: StickerType['id']
@@ -18,16 +19,10 @@ export const AlbumSlot = ({ slotId, slotData }: Props) => {
     )
   }
 
-  const { id, category, title, rarity } = slotData
+  const { id, category } = slotData
   return (
     <Link to={`${category}/${id}`}>
-      <div className={`album-slot album-slot--filled album-slot--${rarity}`}>
-        <div className="album-slot__header">
-          <span className="album-slot__id">{id}</span>
-          <p className="album-slot__title">{title}</p>
-        </div>
-        <p className="album-slot__rarity">{rarity}</p>
-      </div>
+      <StickerCard data={slotData} />
     </Link>
   )
 }

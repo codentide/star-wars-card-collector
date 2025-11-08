@@ -1,24 +1,35 @@
-import { useAlbumActions, useOpenedPack } from '../../../stores/album.store'
-import { Sticker } from '../Sticker/Sticker'
+import { useAlbumActions, useIsLoading, useOpenedPack } from '../../../stores/album.store'
+import { LoadingSpinner } from '../../common'
+import { StickerCard } from '../StickerCard/StickerCard'
+
 import './opened-pack.scss'
 
 export const OpenedPack = () => {
   const currentOpenedPack = useOpenedPack()
+  const isLoading = useIsLoading()
   const { processNextSticker, isStickerInAlbum } = useAlbumActions()
   const currentSticker = currentOpenedPack[currentOpenedPack.length - 1]
   const isRepeated = isStickerInAlbum(currentSticker)
-  // [ ]: persistir el estado de pack abierto entre pestañas
 
-  const handleClick = () => processNextSticker()
+  const handleClick = () => {
+    processNextSticker()
+  }
+
+  if (isLoading)
+    return (
+      <div className="opened-pack">
+        <LoadingSpinner />
+      </div>
+    )
 
   return (
     <div className="opened-pack">
       {currentOpenedPack.map((sticker, index) => {
-        return <Sticker key={index} data={sticker} />
+        return <StickerCard key={index} data={sticker} />
       })}
 
       <button className={`opened-pack__button ${isRepeated ? '--discard' : '--add'}`} onClick={handleClick}>
-        {isRepeated ? 'Discard' : '  Add'}
+        {isRepeated ? 'Discard' : 'Add to album'}
       </button>
     </div>
   )

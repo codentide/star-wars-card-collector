@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAlbumActions, usePackLockTimer } from '../../../stores/album.store'
 import { msToDisplay } from '../../../utils'
+import './pack-lock-timer.scss'
 
 export const PackLockTimerDisplay = () => {
   const [timeLeft, setTimeLeft] = useState<number>(0)
@@ -28,11 +29,11 @@ export const PackLockTimerDisplay = () => {
   }, [lockExpirationTime, generateAvailablePacks])
 
   // Display para tiempo terminado
-  if (timeLeft <= 0) return <p>TIEMPO TERMINADO</p>
+  if (timeLeft <= 0) return
 
   return (
     <div className="pack-lock-timer">
-      <p>{msToDisplay(timeLeft)}</p>
+      <p className="pack-lock-timer__remaining">{msToDisplay(timeLeft)}</p>
     </div>
   )
 }

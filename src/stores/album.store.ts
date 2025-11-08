@@ -108,7 +108,7 @@ export const useAlbumStore = create<State>()(
         processNextSticker: () => {
           const currentOpenedPack = get().openedPack
           const newOpenedPackArray = [...currentOpenedPack]
-          const currentSticker = newOpenedPackArray.pop()
+          const currentSticker = newOpenedPackArray.shift()
 
           // Si el array estaba vacio currentSticker deberia ser undefined
           if (!currentSticker) return

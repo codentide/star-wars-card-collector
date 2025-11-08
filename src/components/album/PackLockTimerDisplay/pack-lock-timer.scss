@@ -1,0 +1,15 @@
+@use '../../../scss/base/font' as f;
+
+.pack-lock-timer {
+  display: flex;
+  align-items: center;
+
+  &__remaining {
+    width: 100%;
+    text-align: center;
+    font-size: 6.4rem;
+    font-weight: 600;
+    font-family: f.$font-primary;
+    font-variant-numeric: tabular-nums;
+  }
+}

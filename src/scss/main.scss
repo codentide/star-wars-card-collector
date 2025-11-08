@@ -15,7 +15,7 @@ html {
   min-height: 100dvh;
 
   color-scheme: light dark;
-  font-family: f.$font-primary;
+  font-family: f.$font-secondary;
 }
 
 body,
@@ -41,8 +41,25 @@ main {
 }
 
 .unbox-page {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+
+  gap: 2rem;
+
+  &__title {
+    font-family: f.$font-primary;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .loader {
+    position: absolute;
+    inset: 0;
+    top: 5rem;
+  }
 }
 
 .sticker-detail__overlay {
@@ -60,7 +77,7 @@ main {
     flex-direction: column;
     gap: 1.2rem;
 
-    width: 400px;
+    width: 480px;
     min-height: 200px;
 
     padding: 2.4rem;
@@ -79,6 +96,11 @@ main {
         }
         .category {
           color: hsl(40, 8%, 48%);
+        }
+      }
+      .detail-box {
+        .detail-brick a {
+          color: hsl(50, 88%, 72%);
         }
       }
     }
@@ -112,6 +134,7 @@ main {
           }
 
           .title {
+            font-family: f.$font-primary;
             text-transform: capitalize;
           }
         }
@@ -163,6 +186,8 @@ main {
           display: flex;
           flex-direction: column;
           grid-column: 1/3;
+
+          line-height: 1.5;
         }
 
         &.two-span-width {

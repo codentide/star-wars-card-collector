@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
-import { useAlbumActions, useAvailablePacks, useOpenedPack } from '../stores/album.store'
+import { useAlbumActions, useAvailablePacks, useIsLoading, useOpenedPack } from '../stores/album.store'
 import { PackSelection } from '../components/album/PackSelection/PackSelection'
 import { OpenedPack } from '../components/album/OpenedPack/OpenedPack'
 import { PackLockTimerDisplay } from '../components'
+import { LoadingSpinner } from '../components/common'
 
 export const UnboxPage = () => {
+  const isLoading = useIsLoading()
   // Funcion para generar nuevos paquetes secretos
   const { generateAvailablePacks } = useAlbumActions()
   // Paquetes secretos
@@ -22,9 +24,13 @@ export const UnboxPage = () => {
 
   return (
     <section className="unbox-page">
-      {availablePacks.length > 0 ? <h2>Abrir Nuevo Sobre</h2> : <PackLockTimerDisplay />}
+      <h2 className="unbox-page__title">Open Secret Pack</h2>
+      {/* {availablePacks.length === 0 && <PackLockTimerDisplay />} */}
+
       <br />
-      {openedPack.length === 0 ? <PackSelection packs={availablePacks} /> : <OpenedPack />}
+      {openedPack.length === 0 && <PackLockTimerDisplay />}
+      {openedPack.length === 0 && <PackSelection packs={availablePacks} />}
+      {isLoading ? <LoadingSpinner /> : openedPack.length > 0 ? <OpenedPack /> : ''}
     </section>
   )
 }

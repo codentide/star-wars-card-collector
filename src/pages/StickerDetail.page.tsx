@@ -75,19 +75,19 @@ const CharacterDetail = ({ detail }: { detail: CharacterSticker }) => {
   return (
     <div className="detail-box character">
       <span className="detail-brick">
-        <strong>Altura</strong> {height}cm
+        <strong>Height</strong> {height}cm
       </span>
       <span className="detail-brick">
-        <strong>Color Piel</strong> {skinColor}
+        <strong>Skin Color</strong> {skinColor}
       </span>
       <span className="detail-brick">
-        <strong>Género</strong> {gender}
+        <strong>Gender</strong> {gender}
       </span>
       <span className="detail-brick">
-        <strong>Nacimiento</strong> {birth}
+        <strong>Birth Day</strong> {birth}
       </span>
       <span className="detail-brick two-span-width">
-        <strong>Planeta</strong>{' '}
+        <strong>Homeworld</strong>{' '}
         <a target="_blank" href={homeworld}>
           {homeworld}
         </a>
@@ -102,16 +102,16 @@ const SpaceShipDetail = ({ detail }: { detail: SpaceShipSticker }) => {
   return (
     <div className="detail-box spaceship">
       <span className="detail-brick two-span-width">
-        <strong>Modelo</strong> {model}
+        <strong>Model</strong> {model}
       </span>
       <span className="detail-brick">
-        <strong>Tripulación</strong> {crew}
+        <strong>Crew</strong> {crew}
       </span>
       <span className="detail-brick two-span-width">
-        <strong>Fabricante</strong> {manufacturer}
+        <strong>Manufacturer</strong> {manufacturer}
       </span>
       <span className="detail-brick">
-        <strong>Pasajeros</strong> {passengers}
+        <strong>Passengers</strong> {passengers}
       </span>
     </div>
   )
@@ -126,16 +126,16 @@ const FilmDetail = ({ detail }: { detail: FilmSticker }) => {
         <strong>Director</strong> {director}
       </span>
       <span className="detail-brick">
-        <strong>Productor</strong> {producer}
+        <strong>Producer</strong> {producer}
       </span>
       <span className="detail-brick">
-        <strong>Fecha Estreno</strong> {release}
+        <strong>Release Date</strong> {release}
       </span>
       <span className="detail-brick">
-        <strong>Episodio</strong> {episode}
+        <strong>Episode</strong> {episode}
       </span>
       <span className="detail-brick full-width">
-        <strong>Sinopsis</strong> {overview}
+        <strong>Overview</strong> {overview}
       </span>
     </div>
   )
