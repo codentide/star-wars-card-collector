@@ -73,7 +73,7 @@ export const useAlbumStore = create<State>()(
           // Hacer fetch con el pack seleccionado
           const openedPack = await getPackFromApi(selectedPack)
           const shuffledPack = shuffleArray(openedPack)
-          get().actions.startPackLockTimer(0.25)
+          get().actions.startPackLockTimer(1)
           set({ openedPack: shuffledPack, availablePacks: [], isLoading: false })
         },
         clearOpenedPack: () => set({ openedPack: [] }),
