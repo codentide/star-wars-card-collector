@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
-import { useAlbumActions, useAvailablePacks, useIsLoading, useOpenedPack } from '../stores/album.store'
-import { PackSelection } from '../components/album/PackSelection/PackSelection'
-import { OpenedPack } from '../components/album/OpenedPack/OpenedPack'
-import { PackLockTimerDisplay } from '../components'
-import { LoadingSpinner } from '../components/common'
+import { useAlbumActions, useAvailablePacks, useIsLoading, useOpenedPack } from '../../stores/album.store'
+import { PackSelection } from '../../components/album/PackSelection/PackSelection'
+import { OpenedPack } from '../../components/album/OpenedPack/OpenedPack'
+import { PackLockTimerDisplay } from '../../components'
+import { LoadingSpinner } from '../../components/common'
+import './unbox-page.scss'
 
 export const UnboxPage = () => {
   const isLoading = useIsLoading()

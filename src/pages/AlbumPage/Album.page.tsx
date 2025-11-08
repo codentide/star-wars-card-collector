@@ -1,8 +1,9 @@
-import { useAlbum } from '../stores/album.store'
-import { AlbumFilterTabs, AlbumManager } from '../components'
+import { AlbumFilterTabs, AlbumManager } from '../../components'
+import { useAlbum } from '../../stores/album.store'
+import type { StickerCategory } from '../../types'
 import { Outlet } from 'react-router'
-import type { StickerCategory } from '../types'
 import { useState } from 'react'
+import './album-page.scss'
 
 export const AlbumPage = () => {
   const albumData = useAlbum()
@@ -10,6 +11,7 @@ export const AlbumPage = () => {
 
   return (
     <section className="album-page">
+      {/* Muestra el modal de detalle */}
       <Outlet />
       <AlbumFilterTabs onSelectCategory={setActiveCategory} />
       <AlbumManager data={albumData} activeCategory={activeCategory} />

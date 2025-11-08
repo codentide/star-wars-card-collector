@@ -1,3 +1,3 @@
-export * from './Album.page'
-export * from './StickerDetail.page'
-export * from './Unbox.page'
+export * from './AlbumPage/Album.page'
+export * from './StickerDetailPage/StickerDetail.page'
+export * from './UnboxPage/Unbox.page'
