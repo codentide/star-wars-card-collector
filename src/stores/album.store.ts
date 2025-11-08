@@ -1,6 +1,6 @@
-import type { Album, SecretPack, Sticker, StickerRequest } from '../types/album.types'
+import type { Album, AlbumSticker, SecretPack, StickerRequest } from '../types/album.types'
 import { create } from 'zustand'
-import { generateSecretPack, initializeAlbum } from '../utils'
+import { generateSecretPack, initializeAlbum, shuffleArray } from '../utils'
 import { getPackFromApi } from '../services/sticker.service'
 import { persist } from 'zustand/middleware'
 
@@ -19,7 +19,7 @@ interface Actions {
 interface State {
   album: Album
   availablePacks: SecretPack[]
-  openedPack: Sticker[]
+  openedPack: AlbumSticker[]
   packLockTimer: number | null
   isLoading: boolean
   actions: Actions
@@ -72,8 +72,9 @@ export const useAlbumStore = create<State>()(
           const selectedPack = get().availablePacks[index]
           // Hacer fetch con el pack seleccionado
           const openedPack = await getPackFromApi(selectedPack)
+          const shuffledPack = shuffleArray(openedPack)
           get().actions.startPackLockTimer(0.25)
-          set({ openedPack, availablePacks: [], isLoading: false })
+          set({ openedPack: shuffledPack, availablePacks: [], isLoading: false })
         },
         clearOpenedPack: () => set({ openedPack: [] }),
         startPackLockTimer: (minutes) => {

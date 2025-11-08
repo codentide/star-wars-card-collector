@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const StickerCard = ({ data }: Props) => {
-  const { id, title, rarity } = data
+  const { id, title, rarity, category } = data
 
   return (
     <div className={`sticker-card sticker-card--${rarity}`}>
@@ -14,7 +14,9 @@ export const StickerCard = ({ data }: Props) => {
         <span className="sticker-card__id">{id}</span>
         <p className="sticker-card__title">{title}</p>
       </div>
-      <p className="sticker-card__rarity">{rarity}</p>
+      <p className="sticker-card__rarity">
+        {rarity} {category}
+      </p>
     </div>
   )
 }

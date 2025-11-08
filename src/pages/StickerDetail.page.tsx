@@ -34,7 +34,7 @@ export const StickerDetailPage = () => {
               <IoIosClose />
             </button>
           </header>
-          <p>No se encontró detalle detalle del cromo.</p>
+          <p>No se encontró detalle del cromo.</p>
         </article>
       </div>
     )

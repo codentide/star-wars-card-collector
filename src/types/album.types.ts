@@ -45,5 +45,7 @@ export interface Album {
   spaceship: AlbumCategory
 }
 
+// Sticker request es lo minimo que necesitamos para traer un sticker del api
 export type StickerRequest = Pick<Sticker, 'id' | 'category'>
+// Un sobre secreto esta formado por 4 o mas sticker requests
 export type SecretPack = StickerRequest[]
