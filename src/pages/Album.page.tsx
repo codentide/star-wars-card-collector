@@ -1,28 +1,18 @@
-import { useAlbum, useAlbumActions } from '../stores/album.store'
-import { Album } from '../components'
+import { useAlbum } from '../stores/album.store'
+import { AlbumFilterTabs, AlbumManager } from '../components'
 import { Outlet } from 'react-router'
+import type { StickerCategory } from '../types'
+import { useState } from 'react'
 
 export const AlbumPage = () => {
-  const album = useAlbum()
-  const { addStickerToAlbum } = useAlbumActions()
+  const albumData = useAlbum()
+  const [activeCategory, setActiveCategory] = useState<StickerCategory>('character')
 
   return (
-    <section>
-      {/* Testing new function */}
-      <button
-        onClick={() =>
-          addStickerToAlbum({
-            id: 2,
-            title: 'Kylo Ren',
-            category: 'character',
-            rarity: 'special',
-          })
-        }
-      >
-        ADD CARD
-      </button>
+    <section className="album-page">
       <Outlet />
-      <Album data={album} />
+      <AlbumFilterTabs onSelectCategory={setActiveCategory} />
+      <AlbumManager data={albumData} activeCategory={activeCategory} />
     </section>
   )
 }

@@ -36,7 +36,7 @@ export interface SpaceShipSticker extends Sticker {
   passengers: string
 }
 export type AlbumSticker = CharacterSticker | FilmSticker | SpaceShipSticker
-export type AlbumSlot = Pick<Sticker, 'id' | 'category'> | null
+export type AlbumSlot = Omit<Sticker, 'url'> | null
 export type AlbumCategory = Record<number, AlbumSlot>
 
 export interface Album {

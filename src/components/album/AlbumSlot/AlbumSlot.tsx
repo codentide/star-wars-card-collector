@@ -1,26 +1,33 @@
-import type { AlbumSlot as AlbumSlotType } from '../../../types'
+import type { AlbumSlot as AlbumSlotType, Sticker as StickerType } from '../../../types'
 import { Link } from 'react-router'
-import { Sticker } from '../Sticker/Sticker'
 import './album-slot.scss'
 
 interface Props {
-  slotId: number
-  stickerData: AlbumSlotType
+  slotId: StickerType['id']
+  slotData: AlbumSlotType
 }
 
-export const AlbumSlot = ({ slotId, stickerData }: Props) => {
-  if (stickerData == null) {
+// Si esta vació
+
+export const AlbumSlot = ({ slotId, slotData }: Props) => {
+  if (slotData == null) {
     return (
-      <div className="album-slot --empty">
-        <p>{slotId}</p>
+      <div className="album-slot">
+        <span className="album-slot__id">{slotId}</span>
       </div>
     )
   }
 
-  const { id, category } = stickerData
+  const { id, category, title, rarity } = slotData
   return (
     <Link to={`${category}/${id}`}>
-      <Sticker data={stickerData} />
+      <div className={`album-slot album-slot--filled album-slot--${rarity}`}>
+        <div className="album-slot__header">
+          <span className="album-slot__id">{id}</span>
+          <p className="album-slot__title">{title}</p>
+        </div>
+        <p className="album-slot__rarity">{rarity}</p>
+      </div>
     </Link>
   )
 }

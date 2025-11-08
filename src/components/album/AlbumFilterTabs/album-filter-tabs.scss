@@ -1,0 +1,59 @@
+@use '../../../scss/base/colors' as c;
+
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem;
+  border-radius: 0.4rem;
+
+  background-color: c.$color-neutral-1250;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    width: 100%;
+
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.2rem;
+
+    background-color: transparent;
+
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  &__name {
+    font-size: 0.8rem;
+    font-weight: 300;
+    text-transform: capitalize;
+    color: c.$color-neutral-800;
+
+    padding-left: 1rem;
+  }
+
+  &__count {
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.2rem;
+    font-size: 0.6rem;
+
+    color: hsl(c.$hue-primary, 100%, 60%);
+    background-color: hsl(c.$hue-primary, 100%, 32%, 0.2);
+  }
+}
+
+.filter-tabs__item--active {
+  background-color: c.$color-neutral-1150;
+
+  .filter-tabs__name {
+    color: c.$color-neutral-400;
+  }
+
+  .filter-tabs__count {
+    // background-color: hsl(c.$hue-primary, 100%, 8%, 0.4);
+  }
+}

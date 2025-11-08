@@ -6,7 +6,7 @@ import { persist } from 'zustand/middleware'
 
 interface Actions {
   initializeAlbum: () => void
-  addStickerToAlbum: (sticker: Sticker) => void
+  addStickerToAlbum: (sticker: StickerRequest) => void
   generateAvailablePacks: (limit: number) => void
   openSecretPack: (index: number) => Promise<void>
   clearOpenedPack: () => void
