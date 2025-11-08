@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import type { SecretPack as SecretPackType } from '../../../types/album.types'
 import { useAlbumActions } from '../../../stores/album.store'
 
@@ -16,8 +15,6 @@ export const SecretPack = ({ index, pack }: Props) => {
   // 4. Lista de las cards
   // 5. Si el sticker es nuevo mostrar boton de "descartar" y "aceptar", sino "aceptar" solamente
   // 6. el boton de aceptar agrega el cromo al album y descartar pasa al siguiente pack
-
-  const [open, setOpen] = useState<boolean>(false)
 
   return (
     <article className="secret-pack">
