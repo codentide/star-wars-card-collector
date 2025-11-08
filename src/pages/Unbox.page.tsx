@@ -16,7 +16,6 @@ export const UnboxPage = () => {
   useEffect(() => {
     // Ver si solo ejecutar al primer render
     if (availablePacks.length === 0 && openedPack.length === 0) {
-      console.log('Generando desde unbox')
       generateAvailablePacks(4)
     }
   }, [availablePacks.length, generateAvailablePacks, openedPack])
