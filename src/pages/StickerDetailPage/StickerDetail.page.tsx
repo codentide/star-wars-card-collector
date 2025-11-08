@@ -17,7 +17,7 @@ export const StickerDetailPage = () => {
   if (isLoading) {
     return (
       <div className="sticker-detail__overlay">
-        <article className="sticker--detail__container" onClick={(e) => e.stopPropagation()}>
+        <article className="sticker-detail__container" onClick={(e) => e.stopPropagation()}>
           <LoadingSpinner />
         </article>
       </div>
